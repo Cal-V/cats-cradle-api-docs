@@ -133,7 +133,28 @@ function App() {
             }
         ]
     }
-}}
+}},{name:"Search Listings",route:"/search?q={searchQuery}",method:"GET",output:[
+    {
+        "listing_id": 43,
+        "listing_uuid": "d86a4c95-52a5-4712-b090-258ecdf35ed4",
+        "listing_name": "Bag",
+        "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+        "seller_name": "James Miller",
+        "listing_description": "A bag what you can use",
+        "listing_is_public": 1,
+        "listing_price": 50
+    },
+    {
+        "listing_id": 48,
+        "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+        "listing_name": "Necklace",
+        "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+        "seller_name": "James Miller",
+        "listing_description": "Short necklace on a silver chain with different gems",
+        "listing_is_public": 1,
+        "listing_price": 50
+    }
+]}
     // {name:"/orders/seller/:sellerID",method:"GET"},
     // {name:"/orders/customer/:customerid",method:"GET"},
     // {name:"/user/:userid/wishlist/:wishlistid/add/:listingid",method:"GET"}, // why is this a get
