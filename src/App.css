@@ -31,3 +31,21 @@ html {
 .focus {
   color: aqua;
 }
+
+table {
+  border: 3px white solid
+}
+
+td, th {
+  border: 2px lightblue solid;
+  margin: 3px;
+  padding: 5px;
+}
+
+pre {
+  background-color: #444;
+  border: 3px lightblue solid;
+  border-radius: 15px;
+  padding: 20px;
+  width: fit-content;
+}

@@ -1,0 +1,591 @@
+[
+    {
+        "name":"Register User",
+        "path":"/user",
+        "method":"POST",
+        "input": {
+            "email":"j.smith@example.com",
+            "password":"password!123",
+            "display_name":"John Smith",
+            "address": {
+                "first_name":"John",
+                "last_name":"Smith",
+                "street": [
+                    "123 S Main St","Apt 415"
+                ],
+                "city":"New York City",
+                "state":"NY",
+                "country":"USA"
+            }
+        },
+        "output":{
+            "data": {
+                "user_uuid": "8af82c67-b88f-4fa0-a5c2-6f853bda78c8",
+                "user_email": "j.smith@example.com",
+                "user_display_name": "John Smith",
+                "user_first_name": "John",
+                "user_last_name": "Smith",
+                "user_street_line1": "123 S Main St",
+                "user_street_line2": "Apt 415",
+                "user_city": "New York City",
+                "user_state": "NY",
+                "user_country": "USA"
+            }
+        },
+        "fields": [
+            {
+                "name":"display_name",
+                "description":"visible name, max 20 characters",
+                "required":true,
+                "type":"Body"
+            },{
+                "name":"address",
+                "description":"Shipping address",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"street",
+                "description":"Array of one or two lines",
+                "required":false,
+                "type":"Body"
+            }
+        ]
+    },{
+        "name":"Get User by UUID",
+        "path":"/user/{uuid}",
+        "method":"GET",
+        "output":{
+            "data": {
+                "user_uuid": "8af82c67-b88f-4fa0-a5c2-6f853bda78c8",
+                "user_email": "j.smith@example.com",
+                "user_display_name": "John Smith",
+                "user_first_name": "John",
+                "user_last_name": "Smith",
+                "user_street_line1": "123 S Main St",
+                "user_street_line2": "Apt 415",
+                "user_city": "New York City",
+                "user_state": "NY",
+                "user_country": "USA"
+            }
+        },
+        "fields": [
+            {
+                "name":"uuid",
+                "type":"Path",
+                "description":"Example: \"8af82c67-b88f-4fa0-a5c2-6f853bda78c8\" ",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Update User",
+        "path":"/user",
+        "method":"PUT",
+        "input": {
+            "email":"j.smith@example.com",
+            "password":"password!123",
+            "display_name":"John Smith",
+            "address": {
+                "first_name":"John",
+                "last_name":"Smith",
+                "street": [
+                    "123 S Main St","Apt 415"
+                ],
+                "city":"New York City",
+                "state":"NY",
+                "country":"USA"
+            }
+        },
+        "output":{
+            "data": {
+                "user_uuid": "8af82c67-b88f-4fa0-a5c2-6f853bda78c8",
+                "user_email": "j.smith@example.com",
+                "user_display_name": "John Smith",
+                "user_first_name": "John",
+                "user_last_name": "Smith",
+                "user_street_line1": "123 S Main St",
+                "user_street_line2": "Apt 415",
+                "user_city": "New York City",
+                "user_state": "NY",
+                "user_country": "USA"
+            }
+        },
+        "fields": [
+            {
+                "name":"email",
+                "description":"New user email",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"password",
+                "description":"New user password",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"address",
+                "description":"New address, if you wish to remove the address, set all fields inside to null",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"first_name",
+                "description":"New user first name",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"last_name",
+                "description":"New user first name",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"street",
+                "description":"Array of one or two lines, both must be set to null to delete data if both lines were present before",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"city",
+                "description":"New user city",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"state",
+                "description":"New user state",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"country",
+                "description":"New user country",
+                "required":false,
+                "type":"Body"
+            }
+        ]
+    },{
+        "name":"Delete user",
+        "path":"/user/{uuid}",
+        "method":"DELETE",
+        "fields": [
+            {
+                "name":"uuid",
+                "type":"Path",
+                "description":"Example: \"8af82c67-b88f-4fa0-a5c2-6f853bda78c8\" ",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Create Order",
+        "path":"/order",
+        "method":"POST",
+        "input": {
+            "buyer_id": 12,
+            "order_listing_id": 34,
+            "order_quantity": 1,
+            "options": [
+                23
+            ]
+        },
+        "output":{
+            "order_uuid": "6fa2fcdb-9c39-4c9c-a5a4-d639c989bd2f",
+            "buyer_uuid": "306e6447-376a-455a-a46a-39ae0f4d4da8",
+            "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+            "listing_name": "Necklace",
+            "listing_price": 50,
+            "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+            "order_quantity": 1,
+            "option_name": "Red",
+            "option_additional_price": 0
+        },
+        "fields": [
+            {
+                "name":"buyer_id",
+                "description":"Numerical id of the buyer",
+                "required":true,
+                "type":"Body"
+            },{
+                "name":"order_listing_id",
+                "description":"Numerical id of the listing",
+                "required":true,
+                "type":"Body"
+            },{
+                "name":"options",
+                "description":"Array of neumerical ids of the options on the listing",
+                "required":false,
+                "type":"Body"
+            }
+        ]
+    },{
+        "name":"Get Order by UUID",
+        "path":"/order/{uuid}",
+        "method":"GET",
+        "output":{
+            "order_uuid": "6fa2fcdb-9c39-4c9c-a5a4-d639c989bd2f",
+            "buyer_uuid": "306e6447-376a-455a-a46a-39ae0f4d4da8",
+            "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+            "listing_name": "Necklace",
+            "listing_price": 50,
+            "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+            "order_quantity": 1,
+            "option_name": "Red",
+            "option_additional_price": 0
+        },
+        "fields": [
+            {
+                "name":"uuid",
+                "type":"Path",
+                "description":"Example: \"fe6016cb-68d6-4e24-bf4d-d50ee2b18239\" ",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Get Order by buyer or seller",
+        "path":"/order?buyer=d5a52715-579e-4e8f-9413-33038b653281&seller=dec565f9-2fc5-4278-8186-de1bfd379036",
+        "method":"GET",
+        "output":[
+            {
+                "order_uuid": "93b333a5-3ba2-43a2-aa97-b2441f160492",
+                "buyer_uuid": "d5a52715-579e-4e8f-9413-33038b653281",
+                "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+                "listing_name": "Necklace",
+                "listing_price": 50,
+                "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+                "order_quantity": 1,
+                "option_name": "Blue",
+                "option_additional_price": 0
+            },
+            {
+                "order_uuid": "ce2a0429-2c41-41dd-bbf2-340b5d6687ef",
+                "buyer_uuid": "d5a52715-579e-4e8f-9413-33038b653281",
+                "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+                "listing_name": "Necklace",
+                "listing_price": 50,
+                "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+                "order_quantity": 1,
+                "option_name": "Blue",
+                "option_additional_price": 0
+            },
+            {
+                "order_uuid": "c352158a-8493-4ead-a498-298234e9f420",
+                "buyer_uuid": "d5a52715-579e-4e8f-9413-33038b653281",
+                "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+                "listing_name": "Necklace",
+                "listing_price": 50,
+                "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+                "order_quantity": 1,
+                "option_name": "Green",
+                "option_additional_price": 0
+            },
+            {
+                "order_uuid": "983c12d1-cb4b-46ec-b51c-00aaced4b60d",
+                "buyer_uuid": "d5a52715-579e-4e8f-9413-33038b653281",
+                "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+                "listing_name": "Necklace",
+                "listing_price": 50,
+                "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+                "order_quantity": 1,
+                "option_name": "Green",
+                "option_additional_price": 0
+            },
+            {
+                "order_uuid": "15d3401a-7e61-4a9a-8f07-101b6a1e7ac2",
+                "buyer_uuid": "d5a52715-579e-4e8f-9413-33038b653281",
+                "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+                "listing_name": "Necklace",
+                "listing_price": 50,
+                "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+                "order_quantity": 1,
+                "option_name": "Green",
+                "option_additional_price": 0
+            }
+        ],
+        "fields": [
+            {
+                "name":"buyer",
+                "type":"Query",
+                "description":"Seller UUID; Example: \"d5a52715-579e-4e8f-9413-33038b653281\" ",
+                "required":false
+            },{
+                "name":"seller",
+                "type":"Query",
+                "description":"Seller UUID; Example: \"dec565f9-2fc5-4278-8186-de1bfd379036\" ",
+                "required":false
+            }
+        ]
+    },{
+        "name":"Get user wishlists",
+        "path":"/wishlist/:userId",
+        "method":"GET",
+        "output":[
+            {
+                "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+                "wishlist_uuid": "de551b4a-d6d8-442e-94ad-8fea23",
+                "wishlist_name": "Pretty things",
+                "user_uuid": "2668e7b1-12d5-4876-b829-6337a479a6b6"
+            },
+            {
+                "listing_uuid": "f6f5c6c0-4b64-41c2-b53d-0cd527f7c55e",
+                "wishlist_uuid": "0d9fb5d2-2c06-47d1-9435-933696",
+                "wishlist_name": "Likes",
+                "user_uuid": "2668e7b1-12d5-4876-b829-6337a479a6b6"
+            },
+            {
+                "listing_uuid": "bfb3ddf3-1ed9-46c3-ab6b-186550137842",
+                "wishlist_uuid": "6b523154-4a43-486e-a27e-6dbae2",
+                "wishlist_name": "Other",
+                "user_uuid": "2668e7b1-12d5-4876-b829-6337a479a6b6"
+            }
+        ],
+        "fields": [
+            {
+                "name":"uuid",
+                "type":"Path",
+                "description":"Example: \"8af82c67-b88f-4fa0-a5c2-6f853bda78c8\" ",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Create wishlist",
+        "path":"/wishlist",
+        "method":"POST",
+        "input":{
+            "user_id":12,
+            "wishlist_name":"Pretty things"
+        },
+        "fields": [
+            {
+                "name":"user_id",
+                "type":"Body",
+                "description":"Numerical id of the user",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Update wishlist name",
+        "path":"/wishlist/{uuid}",
+        "method":"PUT",
+        "input":{
+            "wishlist_name":"Pretty things"
+        },
+        "output":{
+            "response":"List Updated"
+        },
+        "fields": [
+            {
+                "name":"wishlist_name",
+                "type":"Body",
+                "description":"New wishlist name",
+                "required":true
+            },{
+                "name":"uuid",
+                "type":"Path",
+                "description":"Example: \"8af82c67-b88f-4fa0-a5c2-6f853bda78c8\" ",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Delete wishlist",
+        "path":"/wishlist/{uuid}",
+        "method":"DELETE",
+        "output":{"response":"List Deleted"},
+        "fields": [
+            {
+                "name":"uuid",
+                "type":"Path",
+                "description":"Example: \"8af82c67-b88f-4fa0-a5c2-6f853bda78c8\" ",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Create listing",
+        "path":"/listing",
+        "method":"POST",
+        "input": {
+            "seller_id":12,
+            "name":"Bag",
+            "description": "A bag what you can use",
+            "is_public":true,
+            "price":50,
+            "tags": [
+                "Clothing","Accessories"
+            ],
+            "options": {
+                "color": [
+                    {
+                        "name": "Red",
+                        "price": 0
+                    },
+                    {
+                        "name": "Blue",
+                        "price": 0
+                    },
+                    {
+                        "name": "Green",
+                        "price": 0
+                    },
+                    {
+                        "name": "Gold",
+                        "price": 5
+                    }
+                ]
+            }
+        },
+        "output":{
+            "listing_id": 43,
+            "listing_uuid": "d86a4c95-52a5-4712-b090-258ecdf35ed4",
+            "listing_name": "Bag",
+            "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+            "seller_name": "James Miller",
+            "listing_description": "A bag what you can use",
+            "listing_is_public": 1,
+            "listing_price": 50,
+            "tags": [
+                {
+                    "name": "clothing",
+                    "id": 1
+                },
+                {
+                    "name": "accessories",
+                    "id": 2
+                }
+            ],
+            "options": {
+                "color": [
+                    {
+                        "name": "Red",
+                        "price": 0,
+                        "id": 56
+                    },
+                    {
+                        "name": "Blue",
+                        "price": 0,
+                        "id": 57
+                    },
+                    {
+                        "name": "Green",
+                        "price": 0,
+                        "id": 58
+                    },
+                    {
+                        "name": "Gold",
+                        "price": 5,
+                        "id": 59
+                    }
+                ]
+            }
+        },
+        "fields": [
+            {
+                "name":"tags",
+                "description":"Array of tags for the listing",
+                "required":false,
+                "type":"Body"
+            },{
+                "name":"options",
+                "description":"Object for dropdown options where the key is the list name and the value for that key is the array of available options",
+                "required":false,
+                "type":"Body"
+            }
+        ]
+    },{
+        "name":"Get Listing by UUID",
+        "path":"/listing/{uuid}",
+        "method":"GET",
+        "output":{
+            "listing_id": 43,
+            "listing_uuid": "d86a4c95-52a5-4712-b090-258ecdf35ed4",
+            "listing_name": "Bag",
+            "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+            "seller_name": "James Miller",
+            "listing_description": "A bag what you can use",
+            "listing_is_public": 1,
+            "listing_price": 50,
+            "tags": [
+                {
+                    "name": "clothing",
+                    "id": 1
+                },
+                {
+                    "name": "accessories",
+                    "id": 2
+                }
+            ],
+            "options": {
+                "color": [
+                    {
+                        "name": "Red",
+                        "price": 0,
+                        "id": 56
+                    },
+                    {
+                        "name": "Blue",
+                        "price": 0,
+                        "id": 57
+                    },
+                    {
+                        "name": "Green",
+                        "price": 0,
+                        "id": 58
+                    },
+                    {
+                        "name": "Gold",
+                        "price": 5,
+                        "id": 59
+                    }
+                ]
+            }
+        },
+        "fields": [
+            {
+                "name":"uuid",
+                "type":"Path",
+                "description":"Example: \"d86a4c95-52a5-4712-b090-258ecdf35ed4\" ",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Delete listing",
+        "path":"/listing/{uuid}",
+        "method":"DELETE",
+        "output":{
+            "response":"Listing Deleted"
+        },
+        "fields": [
+            {
+                "name":"uuid",
+                "type":"Path",
+                "description":"Example: \"d86a4c95-52a5-4712-b090-258ecdf35ed4\" ",
+                "required":true
+            }
+        ]
+    },{
+        "name":"Search listings",
+        "path":"/search?q=James",
+        "method":"GET",
+        "output":[
+            {
+                "listing_id": 43,
+                "listing_uuid": "d86a4c95-52a5-4712-b090-258ecdf35ed4",
+                "listing_name": "Bag",
+                "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+                "seller_name": "James Miller",
+                "listing_description": "A bag what you can use",
+                "listing_is_public": 1,
+                "listing_price": 50
+            },
+            {
+                "listing_id": 48,
+                "listing_uuid": "3c22b18a-ed18-467b-9cbd-7a9bf1feb950",
+                "listing_name": "Necklace",
+                "seller_uuid": "dec565f9-2fc5-4278-8186-de1bfd379036",
+                "seller_name": "James Miller",
+                "listing_description": "Short necklace on a silver chain with different gems",
+                "listing_is_public": 1,
+                "listing_price": 50
+            }
+        ],
+        "fields": [
+            {
+                "name":"q",
+                "type":"Query",
+                "description":"Search query, matches both listing names and shops",
+                "required":true
+            }
+        ]
+    }
+]
